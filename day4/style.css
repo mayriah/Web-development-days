@@ -1,0 +1,262 @@
+/* ========================================================
+   CSS Variables / Design System Tokens
+   ======================================================== */
+:root {
+  --bg-color: #f4f6f8;
+  --text-color: #1f2937;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --header-bg: #8e0000;
+  --header-text: #ffffff;
+  --textarea-bg: #ffffff;
+  --textarea-border: #cbd5e1;
+  --textarea-focus: #8e0000;
+  --btn-clear-bg: #8e0000;
+  --btn-clear-hover: #6b0000;
+  --btn-theme-bg: rgba(255, 255, 255, 0.2);
+  --btn-theme-hover: rgba(255, 255, 255, 0.35);
+  --btn-text: #ffffff;
+  --counter-text: #64748b;
+  --footer-text: #64748b;
+  --warning-color: #d97706; /* orange */
+  --over-color: #dc2626;    /* red */
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================================
+   Dark Theme (only redefines CSS variables)
+   ======================================================== */
+body.dark {
+  --bg-color: #0f172a;
+  --text-color: #f1f5f9;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --header-bg: #5a0000;
+  --header-text: #f8fafc;
+  --textarea-bg: #0f172a;
+  --textarea-border: #475569;
+  --textarea-focus: #ef4444;
+  --btn-clear-bg: #991b1b;
+  --btn-clear-hover: #b91c1c;
+  --btn-theme-bg: rgba(255, 255, 255, 0.15);
+  --btn-theme-hover: rgba(255, 255, 255, 0.25);
+  --btn-text: #f8fafc;
+  --counter-text: #94a3b8;
+  --footer-text: #94a3b8;
+  --warning-color: #f59e0b; /* brighter orange for dark backgrounds */
+  --over-color: #ef4444;    /* brighter red for dark backgrounds */
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================================
+   Base Reset & Typography
+   ======================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ========================================================
+   Header & Theme Toggle
+   ======================================================== */
+header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 20px 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s ease;
+}
+
+.header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-branding h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+.header-branding p {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+#theme-toggle {
+  background-color: var(--btn-theme-bg);
+  color: var(--header-text);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+#theme-toggle:hover {
+  background-color: var(--btn-theme-hover);
+}
+
+#theme-toggle:active {
+  transform: scale(0.98);
+}
+
+/* ========================================================
+   Main Content & Note Card
+   ======================================================== */
+main {
+  flex: 1;
+  max-width: 680px;
+  width: 100%;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+  color: var(--text-color);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+textarea#note-text {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px solid var(--textarea-border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: var(--textarea-bg);
+  color: var(--text-color);
+  resize: vertical;
+  min-height: 140px;
+  transition: border-color 0.2s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+textarea#note-text:focus {
+  outline: none;
+  border-color: var(--textarea-focus);
+  box-shadow: 0 0 0 3px rgba(142, 0, 0, 0.15);
+}
+
+body.dark textarea#note-text:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+}
+
+/* ========================================================
+   Counters & Status Classes
+   ======================================================== */
+.counters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--counter-text);
+  margin-top: 2px;
+}
+
+.counters p {
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+/* Warning state: over 180 characters */
+.warning {
+  color: orange;
+  color: var(--warning-color);
+}
+
+/* Over state: over 200 characters */
+.over {
+  color: red;
+  color: var(--over-color);
+  font-weight: bold;
+}
+
+/* ========================================================
+   Actions & Clear Button
+   ======================================================== */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+#clear-btn {
+  background-color: var(--btn-clear-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#clear-btn:hover {
+  background-color: var(--btn-clear-hover);
+}
+
+#clear-btn:active {
+  transform: scale(0.98);
+}
+
+/* ========================================================
+   Footer
+   ======================================================== */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: var(--footer-text);
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}

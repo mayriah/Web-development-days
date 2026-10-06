@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Toolkit - Live Character Counter & Dark Mode</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="header-branding">
+                <h1>QuickNotes</h1>
+                <p>Live Character Counter &amp; Dark Mode</p>
+            </div>
+            <button id="theme-toggle" type="button" aria-label="Toggle visual theme">Dark mode</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Compose Note</h2>
+
+            <form id="note-form" onsubmit="return false;">
+                <label for="note-text">Note Text</label>
+                <textarea
+                    id="note-text"
+                    rows="7"
+                    placeholder="Type your note here (up to 200 characters)..."
+                    aria-describedby="char-count word-count"
+                ></textarea>
+
+                <div class="counters">
+                    <p id="char-count">0 / 200 characters</p>
+                    <p id="word-count">0 words</p>
+                </div>
+
+                <div class="actions">
+                    <button id="clear-btn" type="button">Clear</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 QuickNotes &bull; Day 4 Assignment</p>
+    </footer>
+</body>
+</html>
