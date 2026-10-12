@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Directory - Day 5 API Lab</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="users.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <h1>User Directory</h1>
+        <p class="subtitle">QuickNotes API Lab &bull; Day 5</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="controls-card">
+        <div class="actions">
+          <button id="load-users" type="button">Load Users</button>
+        </div>
+
+        <div class="filter-wrapper">
+          <label for="filter-input">Filter by name</label>
+          <input
+            id="filter-input"
+            type="text"
+            placeholder="Type a name to filter..."
+            autocomplete="off"
+          />
+        </div>
+
+        <p id="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="results-card">
+        <ul id="users-list"></ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2026 QuickNotes &bull; Web Foundations Day 5 Assignment</p>
+    </footer>
+  </body>
+</html>
