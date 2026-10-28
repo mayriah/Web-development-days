@@ -1,262 +1,986 @@
 /* ========================================================
-   CSS Variables / Design System Tokens
+   QuickNotes Design System: Champagne & Midnight Palettes
    ======================================================== */
+
 :root {
-  --bg-color: #f4f6f8;
-  --text-color: #1f2937;
-  --card-bg: #ffffff;
-  --card-border: #e5e7eb;
-  --header-bg: #8e0000;
-  --header-text: #ffffff;
-  --textarea-bg: #ffffff;
-  --textarea-border: #cbd5e1;
-  --textarea-focus: #8e0000;
-  --btn-clear-bg: #8e0000;
-  --btn-clear-hover: #6b0000;
-  --btn-theme-bg: rgba(255, 255, 255, 0.2);
-  --btn-theme-hover: rgba(255, 255, 255, 0.35);
-  --btn-text: #ffffff;
-  --counter-text: #64748b;
-  --footer-text: #64748b;
-  --warning-color: #d97706; /* orange */
-  --over-color: #dc2626;    /* red */
-  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  /* Palette: Champagne (Light Mode - Default) */
+  --bg-canvas: #f6f3eb;
+  --bg-watermark: rgba(165, 148, 120, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-border: rgba(220, 212, 196, 0.7);
+  --subcard-bg: rgba(255, 255, 255, 0.95);
+  --subcard-border: rgba(225, 218, 204, 0.6);
+  --text-main: #2f2a24;
+  --text-sub: #7a7366;
+  --text-muted: #9c9485;
+  --gold-primary: #bfa052;
+  --gold-gradient: linear-gradient(135deg, #c5a758 0%, #aa8b39 100%);
+  --gold-hover: #a78835;
+  --gold-pill: #e6c875;
+  --gold-pill-text: #2f2a24;
+  --avatar-bg: #dfbc5e;
+  --avatar-text: #2f2a24;
+  --input-bg: rgba(255, 255, 255, 0.95);
+  --input-border: rgba(205, 195, 178, 0.75);
+  --input-focus: #bfa052;
+  --shadow-card: 0 10px 30px rgba(160, 145, 120, 0.08);
+  --shadow-phone: 0 25px 60px rgba(0, 0, 0, 0.25), 0 0 0 10px #1e1e20, 0 0 0 12px #3c3c40;
+  --phone-notch: #000000;
+  --warning-color: #d97706;
+  --over-color: #dc2626;
+  --radius-card: 20px;
+  --radius-input: 12px;
 }
 
-/* ========================================================
-   Dark Theme (only redefines CSS variables)
-   ======================================================== */
+/* Palette: Midnight (Dark Mode - Photos 3) */
+body.palette-midnight,
 body.dark {
-  --bg-color: #0f172a;
-  --text-color: #f1f5f9;
-  --card-bg: #1e293b;
-  --card-border: #334155;
-  --header-bg: #5a0000;
-  --header-text: #f8fafc;
-  --textarea-bg: #0f172a;
-  --textarea-border: #475569;
-  --textarea-focus: #ef4444;
-  --btn-clear-bg: #991b1b;
-  --btn-clear-hover: #b91c1c;
-  --btn-theme-bg: rgba(255, 255, 255, 0.15);
-  --btn-theme-hover: rgba(255, 255, 255, 0.25);
-  --btn-text: #f8fafc;
-  --counter-text: #94a3b8;
-  --footer-text: #94a3b8;
-  --warning-color: #f59e0b; /* brighter orange for dark backgrounds */
-  --over-color: #ef4444;    /* brighter red for dark backgrounds */
-  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --bg-canvas: #1e2019;
+  --bg-watermark: rgba(212, 176, 85, 0.05);
+  --card-bg: rgba(38, 41, 33, 0.88);
+  --card-border: rgba(95, 100, 80, 0.45);
+  --subcard-bg: rgba(32, 34, 27, 0.9);
+  --subcard-border: rgba(80, 85, 70, 0.4);
+  --text-main: #f3eee4;
+  --text-sub: #a5a195;
+  --text-muted: #7d796e;
+  --gold-primary: #d4b055;
+  --gold-gradient: linear-gradient(135deg, #dfbc5e 0%, #be9739 100%);
+  --gold-hover: #c49e3c;
+  --gold-pill: #d4b055;
+  --gold-pill-text: #1e2019;
+  --avatar-bg: #d4b055;
+  --avatar-text: #1e2019;
+  --input-bg: rgba(28, 30, 24, 0.9);
+  --input-border: rgba(85, 90, 72, 0.6);
+  --input-focus: #dfbc5e;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-phone: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 10px #11120e, 0 0 0 12px #2d3027;
+  --phone-notch: #000000;
+  --warning-color: #fbbf24;
+  --over-color: #f87171;
 }
 
-/* ========================================================
-   Base Reset & Typography
-   ======================================================== */
-*,
-*::before,
-*::after {
+/* Base Reset & Fonts */
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.5;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  line-height: 1.5;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  position: relative;
 }
 
 /* ========================================================
-   Header & Theme Toggle
+   Typographic Watermark Background Layer (from Photos)
    ======================================================== */
-header {
-  background-color: var(--header-bg);
-  color: var(--header-text);
-  padding: 20px 24px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.25s ease;
+.watermark-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.watermark {
+  position: absolute;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(6rem, 16vw, 15rem);
+  font-weight: 700;
+  color: var(--bg-watermark);
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -0.04em;
+  transition: color 0.35s ease;
+}
+
+.watermark-left-top {
+  top: 15%;
+  left: -2vw;
+  transform: rotate(-3deg);
+}
+
+.watermark-left-bottom {
+  bottom: 8%;
+  left: -1vw;
+  transform: rotate(-1deg);
+}
+
+.watermark-right {
+  top: 36%;
+  right: -3vw;
+  transform: rotate(2deg);
+}
+
+/* ========================================================
+   Viewport Wrapper: Landscape vs Mobile Frame
+   ======================================================== */
+#viewport-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 16px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Landscape Mode (Desktop - Photos 1 & 3) */
+#viewport-container.mode-landscape {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+#viewport-container.mode-landscape .phone-frame {
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+#viewport-container.mode-landscape .phone-status-bar,
+#viewport-container.mode-landscape .phone-home-bar {
+  display: none;
+}
+
+/* Mobile Mode (Simulated Phone - Photos 2 & 4) */
+#viewport-container.mode-mobile {
+  padding-top: 20px;
+}
+
+#viewport-container.mode-mobile .phone-frame {
+  width: 395px;
+  max-width: 100%;
+  background: var(--bg-canvas);
+  border-radius: 48px;
+  box-shadow: var(--shadow-phone);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#viewport-container.mode-mobile .phone-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: transparent;
+  user-select: none;
+}
+
+.dynamic-island {
+  width: 96px;
+  height: 24px;
+  background-color: var(--phone-notch);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.sensor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #1a1a2e;
+  border-radius: 50%;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.battery-icon {
+  width: 22px;
+  height: 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  padding: 1px;
+  position: relative;
+}
+
+.battery-icon::after {
+  content: '';
+  position: absolute;
+  right: -3.5px;
+  top: 2px;
+  width: 2px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 0 1px 1px 0;
+}
+
+.battery-fill {
+  width: 75%;
+  height: 100%;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+#viewport-container.mode-mobile .phone-home-bar {
+  display: block;
+  width: 130px;
+  height: 5px;
+  background-color: var(--text-muted);
+  border-radius: 10px;
+  margin: 12px auto 8px;
+  opacity: 0.6;
+}
+
+#viewport-container.mode-mobile .phone-screen-content {
+  max-height: 740px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-bottom: 16px;
+}
+
+/* ========================================================
+   Header & Avatar (Photos 1, 2, 3, 4)
+   ======================================================== */
+.app-header {
+  padding: 14px 0 20px;
+  margin-bottom: 8px;
 }
 
 .header-inner {
-  max-width: 680px;
-  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
-}
-
-.header-branding h1 {
-  margin: 0;
-  font-size: 1.75rem;
-  letter-spacing: -0.02em;
-}
-
-.header-branding p {
-  margin: 4px 0 0;
-  font-size: 0.95rem;
-  opacity: 0.9;
-}
-
-#theme-toggle {
-  background-color: var(--btn-theme-bg);
-  color: var(--header-text);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  white-space: nowrap;
-}
-
-#theme-toggle:hover {
-  background-color: var(--btn-theme-hover);
-}
-
-#theme-toggle:active {
-  transform: scale(0.98);
-}
-
-/* ========================================================
-   Main Content & Note Card
-   ======================================================== */
-main {
-  flex: 1;
-  max-width: 680px;
-  width: 100%;
-  margin: 32px auto;
-  padding: 0 16px;
-}
-
-.card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--card-shadow);
-  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.card h2 {
-  margin: 0 0 16px;
-  font-size: 1.35rem;
-  color: var(--text-color);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 12px;
 }
 
-form label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-textarea#note-text {
-  width: 100%;
-  padding: 14px;
-  border: 1.5px solid var(--textarea-border);
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 1rem;
-  line-height: 1.5;
-  background-color: var(--textarea-bg);
-  color: var(--text-color);
-  resize: vertical;
-  min-height: 140px;
-  transition: border-color 0.2s ease, background-color 0.25s ease, color 0.25s ease;
-}
-
-textarea#note-text:focus {
-  outline: none;
-  border-color: var(--textarea-focus);
-  box-shadow: 0 0 0 3px rgba(142, 0, 0, 0.15);
-}
-
-body.dark textarea#note-text:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
-}
-
-/* ========================================================
-   Counters & Status Classes
-   ======================================================== */
-.counters {
+/* User Pill (Left) */
+.user-pill {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   gap: 8px;
+  padding: 4px 12px 4px 4px;
+  background: var(--subcard-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.user-pill:hover {
+  transform: translateY(-1px);
+}
+
+.avatar-circle {
+  width: 28px;
+  height: 28px;
+  background: var(--avatar-bg);
+  color: var(--avatar-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.user-name {
   font-size: 0.9rem;
-  color: var(--counter-text);
-  margin-top: 2px;
+  font-weight: 600;
+  color: var(--text-main);
 }
 
-.counters p {
-  margin: 0;
-  transition: color 0.2s ease;
+/* Brand Center */
+.brand-branding {
+  text-align: center;
+  flex: 1;
 }
 
-/* Warning state: over 180 characters */
-.warning {
-  color: orange;
-  color: var(--warning-color);
+.brand-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  line-height: 1.1;
 }
 
-/* Over state: over 200 characters */
-.over {
-  color: red;
-  color: var(--over-color);
-  font-weight: bold;
+.brand-tagline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  color: var(--text-sub);
+  margin-top: 4px;
+}
+
+/* Hamburger Menu Button (Right) */
+.menu-btn {
+  background: var(--subcard-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.menu-btn:hover {
+  background: var(--card-bg);
+}
+
+.menu-line {
+  width: 18px;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Navigation Drawer */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 290px;
+  height: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border-left: 1px solid var(--card-border);
+  z-index: 100;
+  padding: 24px;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.drawer-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--text-main);
+}
+
+.drawer-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-sub);
+}
+
+.drawer-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tab-btn {
+  width: 100%;
+  text-align: left;
+  background: var(--subcard-bg);
+  border: 1px solid var(--card-border);
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: var(--gold-primary);
+  color: #ffffff;
+  border-color: var(--gold-primary);
+}
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ========================================================
-   Actions & Clear Button
+   Cards System (Photos 1, 2, 3, 4)
    ======================================================== */
-.actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8px;
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-card);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-#clear-btn {
-  background-color: var(--btn-clear-bg);
-  color: var(--btn-text);
+.card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.card-sub {
+  font-size: 0.92rem;
+  color: var(--text-sub);
+  margin-bottom: 16px;
+}
+
+/* Subcards (e.g. TODAY and NOW) */
+.subcard {
+  background: var(--subcard-bg);
+  border: 1px solid var(--subcard-border);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+.subcard-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.subcard-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ========================================================
+   Tab Sections
+   ======================================================== */
+.tab-section {
+  display: none;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.tab-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Welcome Card */
+.welcome-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.welcome-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  margin: 2px 0 18px;
+}
+
+.datetime-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .datetime-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================================
+   Buttons & Inputs
+   ======================================================== */
+.field-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.text-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-input);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.text-input:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(191, 160, 82, 0.2);
+}
+
+/* Gold Buttons (Matches Photos) */
+.btn-gold {
+  background: var(--gold-gradient);
+  color: #ffffff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 12px 22px;
+  border-radius: 12px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(170, 139, 57, 0.2);
 }
 
-#clear-btn:hover {
-  background-color: var(--btn-clear-hover);
+.btn-gold:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
 }
 
-#clear-btn:active {
-  transform: scale(0.98);
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--card-border);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--subcard-bg);
+  border-color: var(--text-muted);
+}
+
+/* Inline Inputs (Display Name + Save button from Photo 1 & 3) */
+.input-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-inline {
+  white-space: nowrap;
+  padding: 12px 24px;
+}
+
+.field-group {
+  margin-bottom: 16px;
+}
+
+/* Tasks Card */
+.task-list {
+  list-style: none;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--subcard-bg);
+  border: 1px solid var(--subcard-border);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.task-checkbox {
+  accent-color: var(--gold-primary);
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.task-text {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+.task-item.done .task-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-del-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.task-del-btn:hover {
+  color: var(--over-color);
+  background: rgba(220, 38, 38, 0.08);
+}
+
+.empty-state {
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  padding: 16px 8px;
+  font-style: italic;
+}
+
+.card-footer-action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
 }
 
 /* ========================================================
-   Footer
+   Compose Note Scratchpad (Original Day 4 Preserved & Styled)
    ======================================================== */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.85rem;
-  color: var(--footer-text);
-  margin-top: auto;
+.note-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-input);
+  font-size: 1rem;
+  color: var(--text-main);
+  font-family: inherit;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
-footer p {
-  margin: 0;
+.note-textarea:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(191, 160, 82, 0.2);
+}
+
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  margin-top: 10px;
+}
+
+#char-count.warning {
+  color: var(--warning-color);
+  font-weight: 600;
+}
+
+#char-count.over {
+  color: var(--over-color);
+  font-weight: 700;
+}
+
+.draft-indicator {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: var(--subcard-bg);
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--subcard-border);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* Saved Notes List */
+.section-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--subcard-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-sub);
+}
+
+.notes-list {
+  list-style: none;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note-card-item {
+  background: var(--subcard-bg);
+  border: 1px solid var(--subcard-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.note-card-body {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.note-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.note-delete-btn:hover {
+  color: var(--over-color);
+}
+
+/* ========================================================
+   Appearance Card & Toggle (Photos 1 & 3)
+   ======================================================== */
+.appearance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.appearance-subheading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 6px 0 2px;
+}
+
+/* Toggle Switch (Sleek Gold/Champagne Slider) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--input-border);
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 30px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider {
+  background: var(--gold-gradient);
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.auth-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--subcard-bg);
+  border-radius: 10px;
+}
+
+.auth-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+}
+
+.app-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 24px;
+}
+
+/* ========================================================
+   Floating Device Switcher Pill (Bottom Right: Photos 1, 2, 3, 4)
+   ======================================================== */
+.device-switcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--subcard-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 30px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.switch-pill {
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.switch-pill:hover {
+  color: var(--text-main);
+}
+
+.switch-pill.active {
+  background: var(--gold-pill);
+  color: var(--gold-pill-text);
+  box-shadow: 0 2px 6px rgba(191, 160, 82, 0.3);
+}
+
+/* Responsive adjustment for actual mobile screens */
+@media (max-width: 600px) {
+  #viewport-container {
+    padding: 16px 10px 80px;
+  }
+  
+  .card {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+
+  .watermark {
+    display: none;
+  }
 }

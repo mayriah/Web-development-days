@@ -3,48 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes Toolkit - Live Character Counter & Dark Mode</title>
+    <title>QuickNotes — Capture ideas before they disappear</title>
+    <!-- Modern Luxury Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-<body>
-    <header>
-        <div class="header-inner">
-            <div class="header-branding">
-                <h1>QuickNotes</h1>
-                <p>Live Character Counter &amp; Dark Mode</p>
+<body class="palette-champagne">
+
+    <!-- Typographic Watermark Layer (matches Photos: Notes, Words, Ideas) -->
+    <div class="watermark-layer" aria-hidden="true">
+        <span class="watermark watermark-left-top">Notes</span>
+        <span class="watermark watermark-left-bottom">Words</span>
+        <span class="watermark watermark-right">Ideas</span>
+    </div>
+
+    <!-- Outer Viewport Wrapper (Toggles between Landscape Desktop and Mobile Phone Frame) -->
+    <div id="viewport-container" class="mode-landscape">
+
+        <!-- Simulated Mobile Phone Chassis -->
+        <div class="phone-frame">
+
+            <!-- Mobile Phone Status Bar (Visible in Mobile View) -->
+            <div class="phone-status-bar">
+                <span class="status-time" id="status-clock">12:10 PM</span>
+                <div class="dynamic-island">
+                    <span class="sensor-dot"></span>
+                </div>
+                <div class="status-icons">
+                    <svg class="icon-signal" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                        <rect x="1" y="11" width="2" height="4" rx="0.5"/>
+                        <rect x="5" y="8" width="2" height="7" rx="0.5"/>
+                        <rect x="9" y="5" width="2" height="10" rx="0.5"/>
+                        <rect x="13" y="2" width="2" height="13" rx="0.5"/>
+                    </svg>
+                    <svg class="icon-wifi" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                        <path d="M8 12.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.24-2.83a6 6 0 0 1 8.48 0 .75.75 0 0 0 1.06-1.06 7.5 7.5 0 0 0-10.6 0 .75.75 0 0 0 1.06 1.06zm-2.83-2.83a10 10 0 0 1 14.14 0 .75.75 0 1 0 1.06-1.06 11.5 11.5 0 0 0-16.26 0 .75.75 0 0 0 1.06 1.06z"/>
+                    </svg>
+                    <div class="battery-icon">
+                        <div class="battery-fill"></div>
+                    </div>
+                </div>
             </div>
-            <button id="theme-toggle" type="button" aria-label="Toggle visual theme">Dark mode</button>
-        </div>
-    </header>
 
-    <main>
-        <section class="card">
-            <h2>Compose Note</h2>
+            <!-- Scrollable Content Screen -->
+            <div class="phone-screen-content">
 
-            <form id="note-form" onsubmit="return false;">
-                <label for="note-text">Note Text</label>
-                <textarea
-                    id="note-text"
-                    rows="7"
-                    placeholder="Type your note here (up to 200 characters)..."
-                    aria-describedby="char-count word-count"
-                ></textarea>
+                <!-- Header Section -->
+                <header class="app-header">
+                    <div class="header-inner">
+                        <!-- User Avatar Badge (Photo 1 & 4) -->
+                        <div class="user-pill" id="user-pill">
+                            <span class="avatar-circle" id="header-avatar">I</span>
+                            <span class="user-name" id="header-name">Iantha</span>
+                        </div>
 
-                <div class="counters">
-                    <p id="char-count">0 / 200 characters</p>
-                    <p id="word-count">0 words</p>
+                        <!-- Brand Center -->
+                        <div class="brand-branding">
+                            <h1 class="brand-title">QuickNotes</h1>
+                            <p class="brand-tagline">Capture ideas before they disappear.</p>
+                        </div>
+
+                        <!-- Hamburger Menu Button -->
+                        <button class="menu-btn" id="menu-btn" type="button" aria-label="Toggle navigation menu">
+                            <span class="menu-line"></span>
+                            <span class="menu-line"></span>
+                            <span class="menu-line"></span>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Navigation Drawer -->
+                <div id="nav-drawer" class="nav-drawer" aria-hidden="true">
+                    <div class="drawer-header">
+                        <h3>QuickNotes</h3>
+                        <button type="button" id="close-drawer" class="drawer-close-btn">&times;</button>
+                    </div>
+                    <ul class="drawer-menu">
+                        <li><button type="button" class="tab-btn active" data-tab="tab-today">📅 Day at a Glance</button></li>
+                        <li><button type="button" class="tab-btn" data-tab="tab-notes">📝 Notes &amp; Scratchpad</button></li>
+                        <li><button type="button" class="tab-btn" data-tab="tab-tasks">✅ Pending Tasks</button></li>
+                        <li><button type="button" class="tab-btn" data-tab="tab-profile">👤 Profile &amp; Settings</button></li>
+                    </ul>
                 </div>
+                <div id="drawer-backdrop" class="drawer-backdrop"></div>
 
-                <div class="actions">
-                    <button id="clear-btn" type="button">Clear</button>
-                </div>
-            </form>
-        </section>
-    </main>
+                <!-- Main Content -->
+                <main class="main-content">
 
-    <footer>
-        <p>&copy; 2026 QuickNotes &bull; Day 4 Assignment</p>
-    </footer>
+                    <!-- TAB 1: TODAY / AT A GLANCE (Photos 2 & 4) -->
+                    <section id="tab-today" class="tab-section active">
+                        
+                        <!-- Welcome Card with Live Date & Time -->
+                        <div class="card welcome-card">
+                            <h2 class="welcome-heading">Welcome back, <span id="welcome-name">Iantha</span></h2>
+                            <p class="welcome-sub">Here is your day at a glance.</p>
+
+                            <div class="datetime-grid">
+                                <div class="subcard">
+                                    <span class="subcard-label">TODAY</span>
+                                    <p class="subcard-value" id="live-date">Thursday, October 22, 2026</p>
+                                </div>
+                                <div class="subcard">
+                                    <span class="subcard-label">NOW</span>
+                                    <p class="subcard-value" id="live-time">12:10 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Tasks Preview Card (Photos 2 & 4) -->
+                        <div class="card tasks-card">
+                            <h2 class="card-title">Pending tasks</h2>
+                            <form id="task-form" onsubmit="return false;">
+                                <label for="task-input" class="field-label">New task</label>
+                                <div class="input-row">
+                                    <input type="text" id="task-input" class="text-input" placeholder="Add a task..." autocomplete="off">
+                                </div>
+                                <button type="submit" id="add-task-btn" class="btn-gold btn-block">Add Task</button>
+                            </form>
+
+                            <ul id="task-list" class="task-list"></ul>
+                            <p id="task-empty-state" class="empty-state">All tasks are done. Nothing is pending.</p>
+                            
+                            <div class="card-footer-action">
+                                <button type="button" id="clear-done-tasks" class="btn-outline">Clear done</button>
+                            </div>
+                        </div>
+
+                        <!-- Your Notes Card (Photos 2 & 4) -->
+                        <div class="card notes-hub-card">
+                            <h2 class="card-title">Your notes</h2>
+                            <p class="card-sub">Notes stay on their own page, so your day is at a glance here.</p>
+                            <button type="button" class="btn-gold btn-block" id="jump-to-notes-btn">Open Notes Scratchpad</button>
+                        </div>
+                    </section>
+
+                    <!-- TAB 2: COMPOSE NOTES & SEARCH (Original Core + Enhancements) -->
+                    <section id="tab-notes" class="tab-section">
+                        <div class="card compose-card">
+                            <h2 class="card-title">Compose Note</h2>
+                            <p class="card-sub">Live character &amp; word counter &bull; Auto-saves locally</p>
+
+                            <form id="note-form" onsubmit="return false;">
+                                <label for="note-text" class="field-label">Note Text</label>
+                                <textarea
+                                    id="note-text"
+                                    rows="6"
+                                    placeholder="Type your note here (up to 200 characters)..."
+                                    aria-describedby="char-count word-count"
+                                ></textarea>
+
+                                <div class="counters">
+                                    <span id="char-count">0 / 200 characters</span>
+                                    <span id="word-count">0 words</span>
+                                    <span id="save-status" class="draft-indicator">Draft saved</span>
+                                </div>
+
+                                <div class="actions">
+                                    <button id="save-note-btn" type="button" class="btn-gold">Save to Notes</button>
+                                    <button id="clear-btn" type="button" class="btn-outline">Clear</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Saved Notes List & Search -->
+                        <div class="card saved-notes-card">
+                            <div class="section-header-flex">
+                                <h2 class="card-title">Saved Notes</h2>
+                                <span class="badge" id="notes-count">0 notes</span>
+                            </div>
+
+                            <input type="search" id="search-notes" class="text-input" placeholder="Search notes...">
+
+                            <ul id="notes-list" class="notes-list"></ul>
+                            <p id="no-notes-state" class="empty-state">No notes saved yet. Type a note above and click Save!</p>
+                        </div>
+                    </section>
+
+                    <!-- TAB 3: PROFILE & LOGIN & APPEARANCE (Photos 1 & 3) -->
+                    <section id="tab-profile" class="tab-section">
+                        
+                        <!-- Your Profile Card (Photo 1 & 3) -->
+                        <div class="card profile-card">
+                            <h2 class="card-title">Your profile</h2>
+                            <form id="profile-form" onsubmit="return false;">
+                                <div class="field-group">
+                                    <label for="display-name" class="field-label">Display name</label>
+                                    <div class="input-inline">
+                                        <input type="text" id="display-name" class="text-input" value="Iantha" placeholder="Enter display name">
+                                        <button type="submit" id="save-profile-btn" class="btn-gold btn-inline">Save</button>
+                                    </div>
+                                </div>
+
+                                <div class="field-group">
+                                    <label for="login-email" class="field-label">Login email</label>
+                                    <input type="email" id="login-email" class="text-input" value="iantha@quicknotes.app" placeholder="Enter email">
+                                </div>
+
+                                <div class="auth-status-bar">
+                                    <span class="auth-dot"></span>
+                                    <span id="auth-status-text">Logged in as <strong>Iantha</strong> (Offline Persistence Active)</span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Appearance Card (Photo 1 & 3) -->
+                        <div class="card appearance-card">
+                            <div class="appearance-row">
+                                <div class="appearance-info">
+                                    <h2 class="card-title">Appearance</h2>
+                                    <h3 class="appearance-subheading">Dark mode</h3>
+                                    <p class="card-sub">Switch between the champagne and midnight palettes.</p>
+                                </div>
+                                <div class="appearance-toggle">
+                                    <label class="switch" for="theme-switch">
+                                        <input type="checkbox" id="theme-switch" aria-label="Toggle dark mode theme">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <!-- Original theme toggle button preserved for compatibility -->
+                                    <button id="theme-toggle" type="button" class="visually-hidden">Dark mode</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- View Footer -->
+                        <footer class="app-footer">
+                            <p>&copy; 2026 QuickNotes</p>
+                        </footer>
+                    </section>
+
+                </main>
+
+            </div><!-- /.phone-screen-content -->
+
+            <!-- Phone Bottom Home Bar -->
+            <div class="phone-home-bar"></div>
+
+        </div><!-- /.phone-frame -->
+
+    </div><!-- /#viewport-container -->
+
+    <!-- Floating Device Switcher Pill (Bottom Right: Mobile / Landscape from Photos 1, 2, 3, 4) -->
+    <div class="device-switcher" role="region" aria-label="Device view switcher">
+        <button type="button" id="btn-view-mobile" class="switch-pill">Mobile</button>
+        <button type="button" id="btn-view-landscape" class="switch-pill active">Landscape</button>
+    </div>
+
 </body>
 </html>
